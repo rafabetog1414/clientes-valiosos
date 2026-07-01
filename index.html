@@ -304,6 +304,15 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes barpulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
+/* ===== FAQ ===== */
+.faq{max-width:840px}
+.faq-item{border-bottom:1px solid var(--cream-dk)}
+.faq-item summary{cursor:pointer;list-style:none;padding:1.5rem 0;font-weight:600;font-size:1.1rem;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:1.2rem}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--gold);font-size:1.5rem;font-weight:400;line-height:1;transition:transform .25s}
+.faq-item[open] summary::after{content:'–'}
+.faq-item p{margin:0;padding:0 0 1.6rem;color:var(--mid);line-height:1.75;max-width:72ch}
+
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:980px){
   .hero-inner{grid-template-columns:1fr;gap:2.5rem}
@@ -346,6 +355,58 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
   .hero-eyebrow,.hero-body,.hero-ctas,.hero-note,.hero-card,.hero-scroll{opacity:1;animation:none}
 }
 </style>
+
+<!-- Datos estructurados (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.clientesvaliosos.com/#organizacion",
+      "name": "Clientes Valiosos",
+      "legalName": "Clientes Valiosos S.A.S.",
+      "url": "https://www.clientesvaliosos.com/",
+      "logo": "https://www.clientesvaliosos.com/favicon-512.png",
+      "image": "https://www.clientesvaliosos.com/og-image.png",
+      "description": "Consultoría en experiencia del cliente (CX) para pymes, mipymes y emprendimientos colombianos. Ayudamos a convertir el servicio al cliente y la fidelización en un diferencial competitivo y motor de crecimiento.",
+      "slogan": "Todos los clientes son valiosos",
+      "telephone": "+573118475276",
+      "areaServed": { "@type": "Country", "name": "Colombia" },
+      "knowsAbout": [
+        "Experiencia del cliente",
+        "Servicio al cliente para pymes",
+        "Fidelización de clientes",
+        "Retención de clientes",
+        "CX para pymes y emprendimientos"
+      ],
+      "founder": { "@id": "https://www.clientesvaliosos.com/#rafael" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+573118475276",
+        "availableLanguage": "Spanish"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.clientesvaliosos.com/#rafael",
+      "name": "Rafael Guerrero M.",
+      "jobTitle": "Fundador",
+      "worksFor": { "@id": "https://www.clientesvaliosos.com/#organizacion" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.clientesvaliosos.com/#website",
+      "url": "https://www.clientesvaliosos.com/",
+      "name": "Clientes Valiosos",
+      "inLanguage": "es-CO",
+      "publisher": { "@id": "https://www.clientesvaliosos.com/#organizacion" }
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 <a href="#main" class="skip">Saltar al contenido</a>
@@ -386,7 +447,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       </div>
     </div>
     <div class="hero-card">
-      <img loading="eager" decoding="async" src="emprendedora.jpg" alt="Emprendedora colombiana sonriente frente a su negocio">
+      <img loading="eager" decoding="async" src="emprendedora.webp" alt="Emprendedora colombiana sonriente frente a su negocio">
       <div class="hero-card-grad"></div>
       <div class="hero-card-body">
         <p class="hero-quote">No hay que esperar a tener tamaño para empezar: se empieza desde el primer cliente.</p>
@@ -434,7 +495,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       <h2 class="h2">CX no es un lujo corporativo.<br>Es la <span class="gold">ventaja de la pyme.</span></h2>
     </div>
     <figure class="mani-fig sr">
-      <img loading="lazy" decoding="async" src="billeteras-digitales.jpg" alt="Tendera colombiana aceptando pagos con billetera digital">
+      <img loading="lazy" decoding="async" src="billeteras-digitales.webp" alt="Tendera colombiana aceptando pagos con billetera digital">
       <figcaption class="figcap"><span class="figcap-lbl">La oportunidad, hoy</span>La tecnología que antes era exclusiva del corporativo hoy cabe en el bolsillo de cualquier emprendedor.</figcaption>
     </figure>
     <div class="mani-body">
@@ -464,7 +525,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
         <p class="lead">Velocidad, flexibilidad para cambiar sin comités y cercanía con clientes a los que conoce por nombre. Con disciplina de CX, eso es imbatible.</p>
       </div>
       <figure class="vy-fig sr d2">
-        <img loading="lazy" decoding="async" src="agro-jovenes.jpg" alt="Equipo joven de un negocio agrícola colombiano exitoso">
+        <img loading="lazy" decoding="async" src="agro-jovenes.webp" alt="Equipo joven de un negocio agrícola colombiano exitoso">
         <figcaption class="figcap"><span class="figcap-lbl">Talento colombiano</span>Equipos cercanos que cambian esta semana lo que a un gigante le toma meses.</figcaption>
       </figure>
     </div>
@@ -478,7 +539,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 
 <!-- BANDA -->
 <section class="band" aria-label="Pymes reales, clientes reales">
-  <div class="band-bg" style="background-image:url('techos-don-jose.jpg')"></div>
+  <div class="band-bg" style="background-image:url('techos-don-jose.webp')"></div>
   <div class="band-symbol" aria-hidden="true"></div>
   <div class="band-inner sr">
     <span class="eyebrow band-eye">Pymes reales, clientes reales</span>
@@ -495,7 +556,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       <h2 class="h2 h2--light">Todo el conocimiento CX,<br>adaptado a <span class="gold">tu escala.</span></h2>
     </div>
     <div class="svc-feature sr">
-      <figure><img loading="lazy" decoding="async" src="mesero.png" alt="Mesero colombiano atendiendo en un restaurante"></figure>
+      <figure><img loading="lazy" decoding="async" src="mesero.webp" alt="Mesero colombiano atendiendo en un restaurante"></figure>
       <div><span class="eyebrow eyebrow--line">En primera línea</span><p class="svc-fq">La experiencia del cliente no vive en un manual: vive en cada plato servido, cada saludo y cada detalle.</p></div>
     </div>
     <div class="svc-grid">
@@ -537,7 +598,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       </div>
       <div>
         <div class="sobre-id sr d1">
-          <img loading="lazy" decoding="async" src="rafael-guerrero.png" alt="Rafael Guerrero M., fundador de Clientes Valiosos">
+          <img loading="lazy" decoding="async" src="rafael-guerrero.webp" alt="Rafael Guerrero M., fundador de Clientes Valiosos">
           <span><strong>Rafael Guerrero M.</strong><span class="role">Fundador · Magíster y especialista en CX</span></span>
         </div>
         <div class="sobre-quote sr d2">
@@ -549,6 +610,32 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
     </div>
   </div>
 </section>
+
+<!-- FAQ -->
+<section id="faq" class="sec sec-cream">
+  <div class="container">
+    <div class="sec-head sr">
+      <span class="eyebrow eyebrow--dark eyebrow--line">Preguntas frecuentes</span>
+      <h2 class="h2">Experiencia del cliente para pymes, <span class="gold">sin rodeos.</span></h2>
+    </div>
+    <div class="faq sr">
+      <details class="faq-item"><summary>¿Qué es la experiencia del cliente (CX) y por qué le importa a una pyme?</summary>
+        <p>La experiencia del cliente (CX) es la suma de todas las percepciones que una persona se lleva al interactuar con tu negocio, desde que te descubre hasta la posventa. Para las pymes y los emprendimientos colombianos es su mayor diferencial competitivo: la cercanía y la agilidad de un negocio pequeño son casi imposibles de imitar para una gran corporación.</p></details>
+      <details class="faq-item"><summary>¿En qué se diferencia la experiencia del cliente del servicio al cliente?</summary>
+        <p>El servicio al cliente es un momento puntual —resolver una duda o un reclamo—, mientras que la experiencia del cliente es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Un buen servicio al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos.</p></details>
+      <details class="faq-item"><summary>¿Cómo puede una pyme mejorar la fidelización y retención de clientes?</summary>
+        <p>La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y un cliente fiel llega a valer hasta 20 veces más que uno de paso. No requiere grandes inversiones, sino disciplina y criterio.</p></details>
+      <details class="faq-item"><summary>¿Necesito mucho presupuesto o tecnología para mejorar la experiencia del cliente?</summary>
+        <p>No. Se empieza con lo que ya tienes: una conversación de WhatsApp, una hoja de cálculo y el hábito de escuchar a tu cliente. La cultura de valorar a cada persona pesa más que cualquier herramienta costosa, así que la experiencia del cliente es accesible para cualquier presupuesto.</p></details>
+      <details class="faq-item"><summary>¿Qué servicios ofrece Clientes Valiosos?</summary>
+        <p>Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme.</p></details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name": "¿Qué es la experiencia del cliente (CX) y por qué le importa a una pyme?","acceptedAnswer": {"@type": "Answer","text": "La experiencia del cliente (CX) es la suma de todas las percepciones que una persona se lleva al interactuar con tu negocio, desde que te descubre hasta la posventa. Para las pymes y los emprendimientos colombianos es su mayor diferencial competitivo: la cercanía y la agilidad de un negocio pequeño son casi imposibles de imitar para una gran corporación."}},{"@type": "Question","name": "¿En qué se diferencia la experiencia del cliente del servicio al cliente?","acceptedAnswer": {"@type": "Answer","text": "El servicio al cliente es un momento puntual —resolver una duda o un reclamo—, mientras que la experiencia del cliente es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Un buen servicio al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos."}},{"@type": "Question","name": "¿Cómo puede una pyme mejorar la fidelización y retención de clientes?","acceptedAnswer": {"@type": "Answer","text": "La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y un cliente fiel llega a valer hasta 20 veces más que uno de paso. No requiere grandes inversiones, sino disciplina y criterio."}},{"@type": "Question","name": "¿Necesito mucho presupuesto o tecnología para mejorar la experiencia del cliente?","acceptedAnswer": {"@type": "Answer","text": "No. Se empieza con lo que ya tienes: una conversación de WhatsApp, una hoja de cálculo y el hábito de escuchar a tu cliente. La cultura de valorar a cada persona pesa más que cualquier herramienta costosa, así que la experiencia del cliente es accesible para cualquier presupuesto."}},{"@type": "Question","name": "¿Qué servicios ofrece Clientes Valiosos?","acceptedAnswer": {"@type": "Answer","text": "Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme."}}]}
+</script>
 
 <!-- CTA FINAL -->
 <section id="contacto">
