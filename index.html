@@ -87,6 +87,10 @@ html.js .sr.on{opacity:1;transform:none}
 /* ===================== BUTTONS ===================== */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--sans);font-size:.95rem;font-weight:600;padding:.95rem 1.9rem;border-radius:var(--r);border:1.5px solid transparent;cursor:pointer;transition:background .3s var(--ease),color .25s,border-color .25s,transform .25s var(--ease),box-shadow .3s;min-height:48px;will-change:transform}
 .btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-2l{padding:.68rem 1.7rem}
+.btn-l{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15;gap:.08rem}
+.btn-l b{font-weight:600}
+.btn-l small{font-size:.72rem;font-weight:400;opacity:.82}
 .btn-gold{background:var(--gold);color:var(--ink)}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 12px 30px rgba(249,197,75,.4)}
 .btn-ghost-l{background:transparent;border-color:var(--wht-22);color:var(--wht-85)}
@@ -275,6 +279,11 @@ html.js .sr.on{opacity:1;transform:none}
 .cta-h2{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.1;color:var(--ink);max-width:760px;margin:1rem auto 1.2rem;letter-spacing:-.01em}
 .cta-lead{font-size:clamp(1rem,1.5vw,1.16rem);line-height:1.7;color:var(--ink-70);max-width:560px;margin:0 auto 2.4rem}
 .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-copy{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.copy-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--ink-70);background:rgba(1,50,61,.06);border:1px solid rgba(1,50,61,.14);padding:.42rem .85rem;border-radius:100px;cursor:pointer;transition:background .2s,color .2s}
+.copy-chip:hover{background:rgba(1,50,61,.12)}
+.copy-chip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.copy-chip.copied{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn-wa{background:#1FA855;color:#fff;border-color:#1FA855}
 .btn-wa:hover{background:#178A45;border-color:#178A45;transform:translateY(-1px)}
 .btn-wa svg{width:18px;height:18px;fill:currentColor;stroke:none}
@@ -286,15 +295,21 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 .foot{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative;z-index:1}
 .foot-logo img{height:48px}
 .foot-copy{font-size:.82rem;color:var(--wht-45)}
+.foot-contact{display:flex;flex-direction:column;gap:.25rem;font-size:.85rem;color:var(--wht-45)}
+.foot-contact a{color:var(--gold);text-decoration:none}
+.foot-contact a:hover{text-decoration:underline}
 .foot-nav{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap}
 .foot-nav a{font-size:.85rem;color:var(--wht-60);transition:color .25s}
 .foot-nav a:hover{color:var(--gold)}
 
 /* ===================== FIXED CHROME ===================== */
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-lt));z-index:1000;transition:width .1s linear}
-#totop{position:fixed;right:1.2rem;bottom:1.2rem;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--gold);border:1px solid rgba(249,197,75,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .3s,transform .3s,background .25s;z-index:920}
+#totop{position:fixed;left:1.2rem;bottom:1.2rem;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--gold);border:1px solid rgba(249,197,75,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .3s,transform .3s,background .25s;z-index:920}
 #totop.show{opacity:1;transform:none;pointer-events:auto}
 #totop:hover{background:var(--ink-soft)}
+#wafloat{position:fixed;right:1.2rem;bottom:1.2rem;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:915;transition:transform .25s var(--ease),box-shadow .25s}
+#wafloat:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 26px rgba(0,0,0,.3)}
+#wafloat svg{width:30px;height:30px}
 /* Mobile sticky CTA */
 #mcta{position:fixed;left:0;right:0;bottom:0;z-index:910;display:none;padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));background:rgba(1,50,61,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(249,197,75,.2);transform:translateY(110%);transition:transform .4s var(--ease)}
 #mcta.show{transform:none}
@@ -324,7 +339,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
   .svc-feature{grid-template-columns:1fr;gap:2rem;text-align:center}
 }
 @media(max-width:760px){
-  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);flex-direction:column;justify-content:center;align-items:flex-start;gap:1.6rem;background:rgba(1,50,61,.98);backdrop-filter:blur(16px);padding:2rem 2.2rem;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:-12px 0 40px rgba(0,0,0,.3)}
+  .nav-links{position:fixed;top:0;right:0;bottom:0;height:100vh;height:100dvh;z-index:940;width:min(80vw,320px);flex-direction:column;justify-content:center;align-items:flex-start;gap:1.6rem;background:#01323D;padding:2rem 2.2rem;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:-12px 0 40px rgba(0,0,0,.35);overflow-y:auto}
   .nav-open .nav-links{transform:none}
   .nav-links a{font-size:1.1rem;color:var(--wht-85)}
   .nav-cta{padding:.7rem 1.4rem}
@@ -342,6 +357,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
   #mcta{display:block}
   body.has-mcta{padding-bottom:80px}
   #totop{bottom:5rem}
+  #wafloat{bottom:5rem}
 }
 @media(max-width:420px){
   .container,.sec{padding-left:1.15rem;padding-right:1.15rem}
@@ -372,7 +388,8 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       "image": "https://www.clientesvaliosos.com/og-image.png",
       "description": "Consultoría en experiencia del cliente (CX) para pymes, mipymes y emprendimientos colombianos. Ayudamos a convertir el servicio al cliente y la fidelización en un diferencial competitivo y motor de crecimiento.",
       "slogan": "Todos los clientes son valiosos",
-      "telephone": "+573118475276",
+      "telephone": "+573133673838",
+      "email": "contacto@clientesvaliosos.com",
       "areaServed": { "@type": "Country", "name": "Colombia" },
       "knowsAbout": [
         "Experiencia del cliente",
@@ -385,7 +402,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "telephone": "+573118475276",
+        "telephone": "+573133673838",
         "availableLanguage": "Spanish"
       }
     },
@@ -425,7 +442,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
     <li><a href="#manifiesto">Nosotros</a></li>
     <li><a href="#ventajas">Por qué</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#sobre">Rafael</a></li>
+    <li><a href="#faq">Preguntas frecuentes</a></li>
     <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
@@ -649,9 +666,12 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
     <h2 class="cta-h2 sr">¿Listo para convertir cada cliente en un cliente valioso?</h2>
     <p class="cta-lead sr">Empieza con lo que ya tienes. Una sesión express, una conferencia o una consultoría a la medida. Sin fórmulas rígidas: con el criterio que tu negocio necesita.</p>
     <div class="cta-actions sr">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rafabetog@gmail.com&su=Quiero%20empezar%20con%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-dark">Escríbenos <svg viewBox="0 0 24 24"><path d="m4 6 8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg></a>
-      <a href="https://wa.me/573118475276?text=Hola%20Rafael%2C%20quiero%20saber%20más%20de%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-wa" aria-label="Escríbenos por WhatsApp">WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg></a>
-      <a href="#servicios" class="btn btn-ghost-d">Ver servicios</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@clientesvaliosos.com&su=Quiero%20empezar%20con%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-dark">Escríbenos <svg viewBox="0 0 24 24"><path d="m4 6 8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg></a>
+      <a href="https://wa.me/573133673838?text=Hola%20Rafael%2C%20quiero%20saber%20más%20de%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-wa" aria-label="Escríbenos por WhatsApp">WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg></a>
+    </div>
+    <div class="cta-copy sr">
+      <span class="copy-chip" data-copy="contacto@clientesvaliosos.com" role="button" tabindex="0" title="Clic para copiar"><span class="cc-t">contacto@clientesvaliosos.com</span> <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
+      <span class="copy-chip" data-copy="+57 313 367 3838" role="button" tabindex="0" title="Clic para copiar"><span class="cc-t">+57 313 367 3838</span> <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
     </div>
   </div>
 </section>
@@ -663,10 +683,11 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
   <div class="foot">
     <a href="#hero" class="foot-logo" aria-label="Clientes Valiosos — inicio"><img src="logo-cv-apilado-claro.svg" alt="Clientes Valiosos"></a>
     <span class="foot-copy">© 2026 Clientes Valiosos S.A.S. · Bogotá, Colombia</span>
+    <div class="foot-contact"><a href="tel:+573133673838">+57 313 367 3838</a><a href="mailto:contacto@clientesvaliosos.com">contacto@clientesvaliosos.com</a></div>
     <ul class="foot-nav">
       <li><a href="#manifiesto">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#sobre">Rafael</a></li>
+      <li><a href="#faq">Preguntas frecuentes</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </div>
@@ -675,8 +696,10 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 <!-- MOBILE STICKY CTA -->
 <div id="mcta"><a href="#contacto" class="btn btn-gold">Empieza hoy</a></div>
 
+<a id="wafloat" href="https://wa.me/573133673838?text=Hola%20Rafael%2C%20quiero%20saber%20más%20de%20Clientes%20Valiosos" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg></a>
 <button id="totop" aria-label="Volver arriba">↑</button>
 
 <script src="app.js" defer></script>
+<script>document.querySelectorAll(".copy-chip").forEach(function(c){var t=c.querySelector(".cc-t");var orig=t.textContent;function act(){navigator.clipboard.writeText(c.dataset.copy).then(function(){c.classList.add("copied");t.textContent="¡Copiado!";setTimeout(function(){c.classList.remove("copied");t.textContent=orig;},1400);});}c.addEventListener("click",act);c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});});</script>
 </body>
 </html>
