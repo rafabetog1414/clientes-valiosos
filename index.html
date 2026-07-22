@@ -80,7 +80,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:700}
 .eyebrow--line::before{content:'';width:26px;height:1px;background:currentColor;opacity:.6}
 
 /* ===================== SCROLL REVEAL ===================== */
-.sr{opacity:1;transform:none}
+.sr{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+html.js .sr{opacity:0;transform:translateY(24px)}
 html.js .sr.on{opacity:1;transform:none}
 .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}.d5{transition-delay:.35s}
 
@@ -127,11 +128,12 @@ html.js .sr.on{opacity:1;transform:none}
 .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .hero-h1{font-size:clamp(2.9rem,6vw,5.3rem);line-height:1.02;color:var(--white);margin-bottom:1.6rem;letter-spacing:-.01em}
 .hero-h1 .ln{display:block;overflow:hidden}
-.hero-h1 .ln>span{display:block;transform:translateY(105%);transition:transform .85s var(--ease-out)}
+.hero-h1 .ln>span{display:block;transform:none;transition:transform .85s var(--ease-out)}
+html.js .hero-h1 .ln>span{transform:translateY(105%)}
 .hero-h1.in .ln:nth-child(1)>span{transition-delay:.15s}
 .hero-h1.in .ln:nth-child(2)>span{transition-delay:.27s}
 .hero-h1.in .ln:nth-child(3)>span{transition-delay:.39s}
-.hero-h1.in .ln>span{transform:none}
+html.js .hero-h1.in .ln>span{transform:none}
 .hero-h1 em{font-style:normal;color:var(--gold);position:relative}
 .hero-h1 em::after{content:'';position:absolute;left:0;right:0;bottom:.04em;height:3px;background:var(--gold);opacity:.45;border-radius:3px}
 .hero-body{font-size:clamp(1.02rem,1.5vw,1.16rem);font-weight:300;line-height:1.75;color:var(--wht-60);max-width:480px;margin-bottom:2.2rem;opacity:0;animation:fadeUp .9s .6s var(--ease-out) forwards}
@@ -224,10 +226,19 @@ html.js .sr.on{opacity:1;transform:none}
 .band-eye{color:var(--gold)}
 
 /* ===================== SERVICIOS ===================== */
-.svc-feature{display:grid;grid-template-columns:.85fr 1.15fr;gap:3rem;align-items:center;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(249,197,75,.14)}
-.svc-feature figure{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
-.svc-feature img{width:100%;height:clamp(240px,28vw,330px);object-fit:cover}
-.svc-fq{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.45;color:var(--white)}
+.svc-feat{display:grid;grid-template-columns:1fr 1fr;gap:3.2rem;align-items:center;margin-bottom:3.9rem}
+.svc-feat-fig{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.svc-feat-fig img{width:100%;height:clamp(250px,26vw,330px);object-fit:cover;display:block}
+.svc-feat .eyebrow{margin-bottom:1rem}
+.svc-feat .svc-fq{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.3vw,1.9rem);line-height:1.42;color:#fff}
+@media(max-width:820px){.svc-feat{grid-template-columns:1fr;gap:1.8rem}.svc-feat-fig{order:-1}}
+.serv-top{display:grid;grid-template-columns:1.02fr .98fr;gap:2.5rem 4rem;align-items:center;margin-bottom:4rem}
+.serv-top-fig{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.serv-top-fig img{width:100%;height:clamp(300px,33vw,420px);object-fit:cover;display:block}
+.serv-top-cap{position:absolute;left:0;right:0;bottom:0;padding:2.6rem 1.8rem 1.5rem;background:linear-gradient(transparent,rgba(1,50,61,.55) 45%,rgba(1,50,61,.94));color:#fff}
+.serv-top-cap .figcap-lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.serv-top-cap p{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.5vw,1.25rem);line-height:1.42;margin:0}
+@media(max-width:820px){.serv-top{grid-template-columns:1fr;gap:2rem}}
 .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
 .svc{border:1px solid rgba(249,197,75,.18);border-radius:var(--r-lg);padding:2.4rem 2.2rem;background:rgba(255,255,255,.025);position:relative;overflow:hidden;transition:border-color .35s,background .35s,transform .35s var(--ease)}
 .svc::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,197,75,.07),transparent 55%);opacity:0;transition:opacity .35s}
@@ -244,6 +255,66 @@ html.js .sr.on{opacity:1;transform:none}
 .svc-bdg{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:3px;margin-top:1.6rem}
 .bdg-on{color:var(--gold);border:1px solid rgba(249,197,75,.35)}
 .bdg-soon{color:var(--wht-45);border:1px solid rgba(255,255,255,.12)}
+.serv-lead{font-size:clamp(1rem,1.5vw,1.14rem);color:var(--wht-60);font-weight:300;line-height:1.7;margin-top:1.1rem;max-width:560px}
+.serv-lead b{color:var(--gold);font-weight:600}
+.lineas{margin-top:3.6rem;border-top:1px solid rgba(249,197,75,.18)}
+.linea{display:grid;grid-template-columns:auto 1fr .82fr;gap:2.6rem;align-items:center;padding:2.7rem .3rem;border-bottom:1px solid rgba(249,197,75,.18);transition:background .35s}
+.linea:hover{background:rgba(249,197,75,.035)}
+.linea-n{font-family:var(--serif);font-size:clamp(3.4rem,6vw,5.6rem);font-weight:700;color:var(--gold);line-height:.82;font-variant-numeric:tabular-nums}
+.linea-eye{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
+.linea-h{font-family:var(--serif);font-size:clamp(1.32rem,2.3vw,1.9rem);font-weight:600;color:#fff;line-height:1.16;margin-bottom:.75rem;letter-spacing:-.005em}
+.linea-cierre{font-size:.98rem;color:var(--wht-60);line-height:1.55}
+.linea-cierre b{color:var(--gold);font-weight:600}
+.linea-buyer{border-left:2px solid rgba(249,197,75,.32);padding-left:1.35rem}
+.linea-buyer span{display:block;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wht-45);margin-bottom:.5rem}
+.linea-buyer strong{font-size:.96rem;font-weight:500;color:var(--wht-85);line-height:1.42}
+/* ===== 3 LÍNEAS · tarjetas audaces ===== */
+.lineas3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.8rem}
+.l3{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:2.5rem 1.9rem 2.1rem;overflow:hidden;transition:transform .45s var(--ease-out),box-shadow .45s,border-color .45s,background .45s}
+.l3::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--acc)}
+.l3-sym{position:absolute;right:-14%;bottom:-16%;width:190px;height:190px;background:url('brand-symbol.svg') center/contain no-repeat;opacity:.05;pointer-events:none}
+.l3:hover{transform:translateY(-9px);border-color:rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:0 36px 66px -24px rgba(0,0,0,.6)}
+.l3-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:1.15rem}
+.l3-n{font-family:var(--serif);font-size:4.7rem;font-weight:700;line-height:.7;color:var(--acc);font-variant-numeric:tabular-nums}
+.l3-chip{font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc-30);border-radius:100px;padding:.42rem .8rem;text-align:center;line-height:1.25;margin-top:.5rem;background:var(--acc-06)}
+.l3-eye{display:block;font-size:.71rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--acc);margin-bottom:.6rem}
+.l3-h{font-family:var(--serif);font-size:1.44rem;font-weight:600;color:#fff;line-height:1.2;margin-bottom:.75rem;letter-spacing:-.005em}
+.l3-val{font-size:.9rem;color:var(--wht-60);line-height:1.6;margin-bottom:0}
+.l3-list{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:.7rem .95rem;border-top:1px solid rgba(255,255,255,.13);margin-top:1.6rem;padding-top:1.5rem}
+.l3-list li{display:contents}
+.l3-fmt{grid-column:1;align-self:start;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);opacity:1;white-space:nowrap;line-height:1.55;padding-top:.14rem}
+.l3-title{grid-column:2;font-size:.93rem;color:var(--wht-85);line-height:1.42;font-weight:400}
+.l3-title b{color:#fff;font-weight:600}
+.l3-more{grid-column:1/-1;color:var(--acc);font-weight:700;font-style:italic;font-size:.88rem;margin-top:.15rem}
+@media(max-width:900px){.lineas3{grid-template-columns:1fr;gap:1.2rem}.l3{padding:2.1rem 1.6rem}}
+.serv-cta{margin-top:3.6rem;display:flex;flex-direction:column;align-items:center;gap:1.35rem;text-align:center}
+.serv-cta-txt{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.4rem);color:#fff;line-height:1.35;max-width:600px;font-weight:500}
+.serv-cta-txt em{font-style:italic;color:var(--gold)}
+/* ===== CATÁLOGO EDITORIAL (3 líneas) ===== */
+.catalogo{margin-top:3.6rem}
+.lr{display:grid;grid-template-columns:minmax(230px,.82fr) 1.18fr;gap:2.2rem 4.8rem;padding:3.4rem 0;border-top:1px solid rgba(255,255,255,.15);position:relative}
+.lr:last-child{border-bottom:1px solid rgba(255,255,255,.15)}
+.lr-sym{position:absolute;right:-2.5%;top:50%;transform:translateY(-50%);width:148px;height:148px;background:url('brand-symbol.svg') center/contain no-repeat;opacity:.05;pointer-events:none}
+.lr-eye{display:inline-flex;align-items:center;gap:.6rem;font-size:.71rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--acc)}
+.lr-eye::before{content:'';width:28px;height:2px;background:var(--acc)}
+.lr-name{font-family:var(--serif);font-size:clamp(2.3rem,4.3vw,3.6rem);font-weight:700;color:var(--acc);line-height:.98;margin:.75rem 0 .05rem;letter-spacing:-.015em}
+.lr-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.6vw,1.4rem);color:var(--wht-85);margin-bottom:1.05rem}
+.lr-promise{font-size:1.02rem;line-height:1.55;color:var(--wht-60);max-width:350px;margin-bottom:1.15rem}
+.lr-buyer{display:inline-block;font-size:.69rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;border:1px solid var(--acc-30);border-radius:100px;padding:.44rem .95rem;background:var(--acc-06)}
+.lr-menu{align-self:center}
+.lr-card{position:relative;overflow:hidden;background:var(--acc-tint);border:1px solid var(--acc-bd);border-radius:16px;padding:1.85rem 1.8rem 1.6rem;box-shadow:0 20px 44px -28px rgba(0,0,0,.55)}
+.lr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--acc)}
+.lr-card .lr-item:first-child{border-top:none}
+.lr-card .lr-item:last-of-type{border-bottom:none}
+.lr-item{display:flex;justify-content:space-between;align-items:baseline;gap:1.6rem;padding:.82rem 0;border-bottom:1px solid rgba(255,255,255,.1);transition:padding-left .3s}
+.lr-item:first-child{border-top:1px solid rgba(255,255,255,.1)}
+.lr-item:hover{padding-left:.4rem}
+.li-name{font-size:1.02rem;color:var(--cream);line-height:1.36}
+.li-fmt{font-size:.67rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--acc);white-space:nowrap;flex-shrink:0}
+.lr-more{margin-top:1.15rem;font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--acc)}
+@media(max-width:820px){.lr{grid-template-columns:1fr;gap:1.5rem;padding:2.6rem 0}.lr-promise{max-width:none}.lr-sym{display:none}}
+
+@media(max-width:820px){.linea{grid-template-columns:auto 1fr;gap:1rem 1.5rem;padding:2rem .2rem}.linea-buyer{grid-column:1/-1;border-left:none;border-top:1px solid rgba(249,197,75,.16);padding-left:0;padding-top:1rem;margin-top:.5rem}}
 
 /* ===================== CÓMO EMPEZAR ===================== */
 #empezar{background:var(--cream-warm)}
@@ -279,6 +350,21 @@ html.js .sr.on{opacity:1;transform:none}
 .cta-h2{font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.1;color:var(--ink);max-width:760px;margin:1rem auto 1.2rem;letter-spacing:-.01em}
 .cta-lead{font-size:clamp(1rem,1.5vw,1.16rem);line-height:1.7;color:var(--ink-70);max-width:560px;margin:0 auto 2.4rem}
 .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-cta{padding:1.05rem 2rem;min-height:66px;font-size:1rem;gap:.85rem}
+.btn-cta svg{width:29px;height:29px}
+.btn-cta .btn-l{align-items:flex-start}
+.btn-cta .btn-l b{font-size:1.05rem;font-weight:700;line-height:1.12}
+.btn-cta .btn-l small{font-size:.82rem;font-weight:500;opacity:.9;line-height:1.1;margin-top:.15rem}
+.btn-wa.btn-cta svg{fill:currentColor;stroke:none;width:34px;height:34px}
+.cta-social{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:2rem;flex-wrap:wrap}
+.cta-social-lbl{font-size:.9rem;color:var(--ink-70);font-weight:600}
+.soc{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;transition:transform .25s,background .25s,color .25s}
+.soc svg{width:21px;height:21px;fill:currentColor}
+.soc-dark{background:var(--ink);color:var(--cream);border:none}
+.soc-dark:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px)}
+.soc-lt{background:rgba(255,255,255,.1);color:var(--cream);border:none}
+.soc-lt:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px)}
+.foot-social{display:flex;gap:.5rem}
 .cta-copy{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
 .copy-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--ink-70);background:rgba(1,50,61,.06);border:1px solid rgba(1,50,61,.14);padding:.42rem .85rem;border-radius:100px;cursor:pointer;transition:background .2s,color .2s}
 .copy-chip:hover{background:rgba(1,50,61,.12)}
@@ -516,18 +602,18 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       <h2 class="h2">CX no es un lujo corporativo.<br>Es la <span class="gold">ventaja de la pyme.</span></h2>
     </div>
     <figure class="mani-fig sr">
-      <img loading="lazy" decoding="async" src="billeteras-digitales.webp" alt="Tendera colombiana aceptando pagos con billetera digital">
+      <img loading="lazy" decoding="async" style="object-position:center 30%" src="hombre_desarrollador_software_agencia_digital.webp" alt="Joven desarrollador de software en una agencia digital colombiana">
       <figcaption class="figcap"><span class="figcap-lbl">La oportunidad, hoy</span>La tecnología que antes era exclusiva del corporativo hoy cabe en el bolsillo de cualquier emprendedor.</figcaption>
     </figure>
     <div class="mani-body">
       <div class="prose sr">
         <p><strong>Clientes Valiosos es una empresa colombiana de consultoría y formación en experiencia del cliente para pymes, mipymes y emprendimientos.</strong></p>
         <p>El 99,5% del tejido empresarial colombiano son pymes. Trabajan con más agilidad, conocen a sus clientes por nombre y pueden cambiar sin comités. Esa cercanía —convertida en disciplina— es la ventaja más poderosa que existe para competir contra los grandes.</p>
-        <p>No traemos recetas únicas. Traemos criterio, cifras verificadas y un enfoque construido desde la realidad del negocio en construcción. Porque lo que funciona en una corporación no le sirve a una tienda de barrio, y eso no es una limitación: es una oportunidad enorme.</p>
+        <p>No traemos recetas únicas. Traemos criterio, cifras verificadas y un enfoque construido desde la realidad del negocio en construcción. Porque lo que funciona en una corporación no le sirve igual a una cafetería, una óptica o un taller, y eso no es una limitación: es una oportunidad enorme.</p>
         <p>Hoy esa oportunidad está abierta como nunca antes. La tecnología que hace pocos años era exclusiva del corporativo ahora cabe en el bolsillo de cualquier emprendedor.</p>
       </div>
       <div class="beliefs">
-        <div class="belief sr d1"><span class="belief-mk"></span><div class="belief-tx"><strong>La relación duradera es el activo más rentable</strong>Subir 5% la retención puede elevar las utilidades entre 25% y 95%. Un cliente fiel vale hasta 20 veces más que uno de paso.</div></div>
+        <div class="belief sr d1"><span class="belief-mk"></span><div class="belief-tx"><strong>La relación duradera es el activo más rentable</strong>Subir 5% la retención puede elevar las utilidades entre 25% y 95%. Y conseguir un cliente nuevo cuesta entre 5 y 25 veces más que conservar a uno actual.</div></div>
         <div class="belief sr d2"><span class="belief-mk"></span><div class="belief-tx"><strong>La cultura pesa más que la tecnología</strong>Entre dos negocios con herramientas similares, lo que marca la diferencia es si el equipo de verdad valora al cliente.</div></div>
         <div class="belief sr d3"><span class="belief-mk"></span><div class="belief-tx"><strong>El CX es accesible para cualquier presupuesto</strong>Se empieza con lo que ya se tiene: una conversación de WhatsApp, una hoja de cálculo, el hábito de escuchar.</div></div>
         <div class="belief sr d4"><span class="belief-mk"></span><div class="belief-tx"><strong>La ultrapersonalización es la ventaja de la pyme</strong>Una corporación necesita tecnología costosa para fingir cercanía. El negocio pequeño ya conoce a sus clientes por nombre.</div></div>
@@ -546,7 +632,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
         <p class="lead">Velocidad, flexibilidad para cambiar sin comités y cercanía con clientes a los que conoce por nombre. Con disciplina de CX, eso es imbatible.</p>
       </div>
       <figure class="vy-fig sr d2">
-        <img loading="lazy" decoding="async" src="agro-jovenes.webp" alt="Equipo joven de un negocio agrícola colombiano exitoso">
+        <img loading="lazy" decoding="async" style="object-position:center 42%" src="fintech_equipo_reunion.webp" alt="Equipo joven de una fintech colombiana en reunión de trabajo">
         <figcaption class="figcap"><span class="figcap-lbl">Talento colombiano</span>Equipos cercanos que cambian esta semana lo que a un gigante le toma meses.</figcaption>
       </figure>
     </div>
@@ -560,11 +646,11 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 
 <!-- BANDA -->
 <section class="band" aria-label="Pymes reales, clientes reales">
-  <div class="band-bg" style="background-image:url('techos-don-jose.webp')"></div>
+  <div class="band-bg" style="background-image:url('mujer_heladeria_familia_feliz.webp');background-position:center 26%"></div>
   <div class="band-symbol" aria-hidden="true"></div>
   <div class="band-inner sr">
     <span class="eyebrow band-eye">Pymes reales, clientes reales</span>
-    <p class="band-q">Lo que funciona en una corporación no le sirve a una tienda de barrio. <em>Y eso no es una limitación: es una oportunidad enorme.</em></p>
+    <p class="band-q">La cercanía que ya tienes con tus clientes, una gran corporación intenta comprarla con tecnología. <em>Esa es tu ventaja.</em></p>
     <p class="band-attr">Criterio, cifras verificadas y enfoque construido desde la realidad del negocio en construcción.</p>
   </div>
 </section>
@@ -572,35 +658,70 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 <!-- SERVICIOS -->
 <section id="servicios" class="sec sec-ink">
   <div class="container">
-    <div class="sec-head sr">
-      <span class="eyebrow eyebrow--line">Nuestros servicios</span>
-      <h2 class="h2 h2--light">Todo el conocimiento CX,<br>adaptado a <span class="gold">tu escala.</span></h2>
+    <div class="serv-top sr">
+      <div class="serv-top-txt">
+        <span class="eyebrow eyebrow--line">Nuestros servicios</span>
+        <h2 class="h2 h2--light">Construimos la relación con tu cliente,<br>tu <span class="gold">activo más valioso.</span></h2>
+        <p class="serv-lead">Formación, consultoría y productos digitales de experiencia del cliente — con innovación y cercanía, hechos para la pyme colombiana.</p>
+      </div>
+      <figure class="serv-top-fig">
+        <img loading="lazy" decoding="async" style="object-position:center 25%" src="chef_restaurante_conversando_comensales.webp" alt="Chef colombiano conversando con sus comensales en el restaurante">
+        <figcaption class="serv-top-cap"><span class="figcap-lbl">En primera línea</span><p>La experiencia del cliente vive en cada plato servido, cada saludo y cada detalle.</p></figcaption>
+      </figure>
     </div>
-    <div class="svc-feature sr">
-      <figure><img loading="lazy" decoding="async" src="mesero.webp" alt="Mesero colombiano atendiendo en un restaurante"></figure>
-      <div><span class="eyebrow eyebrow--line">En primera línea</span><p class="svc-fq">La experiencia del cliente no vive en un manual: vive en cada plato servido, cada saludo y cada detalle.</p></div>
+        <div class="catalogo sr">
+      <article class="lr" style="--acc:#F9C54B;--acc-30:rgba(249,197,75,.55);--acc-bd:rgba(249,197,75,.55);--acc-06:rgba(249,197,75,.09);--acc-tint:rgba(249,197,75,.12)">
+        <div class="lr-sym"></div>
+        <div class="lr-id">
+          <span class="lr-eye">Línea 01</span>
+          <h3 class="lr-name">Formación</h3>
+          <p class="lr-sub">para instituciones</p>
+          <p class="lr-promise">Un programa de CX listo para dictar, con impacto medible.</p>
+          <span class="lr-buyer">Cámaras · gremios · universidades</span>
+        </div>
+        <div class="lr-menu">
+          <div class="lr-card">
+            <div class="lr-item"><span class="li-name">Clientes que vuelven una y otra vez</span><span class="li-fmt">Conferencia</span></div><div class="lr-item"><span class="li-name">El mapa que enamora a tus clientes</span><span class="li-fmt">Taller</span></div><div class="lr-item"><span class="li-name">Convierte cada queja en lealtad</span><span class="li-fmt">Seminario</span></div><div class="lr-item"><span class="li-name">Programa Pyme Valiosa</span><span class="li-fmt">Curso</span></div><div class="lr-item"><span class="li-name">IA CX Literacy — leer y auditar la IA</span><span class="li-fmt">Certificación</span></div><div class="lr-item"><span class="li-name">Diplomado CX para Pymes</span><span class="li-fmt">Diplomado</span></div>
+            <p class="lr-more">y más a tu medida</p>
+          </div>
+        </div>
+      </article>
+      <article class="lr" style="--acc:#8FAF9A;--acc-30:rgba(143,175,154,.6);--acc-bd:rgba(143,175,154,.6);--acc-06:rgba(143,175,154,.09);--acc-tint:rgba(143,175,154,.2)">
+        <div class="lr-sym"></div>
+        <div class="lr-id">
+          <span class="lr-eye">Línea 02</span>
+          <h3 class="lr-name">Consultoría</h3>
+          <p class="lr-sub">directa a tu pyme</p>
+          <p class="lr-promise">Un experto de experiencia del cliente, al lado de tu negocio.</p>
+          <span class="lr-buyer">A tu medida</span>
+        </div>
+        <div class="lr-menu">
+          <div class="lr-card">
+            <div class="lr-item"><span class="li-name">¿En qué nivel estás?</span><span class="li-fmt">Diagnóstico</span></div><div class="lr-item"><span class="li-name">Tu experto de cliente, uno a uno</span><span class="li-fmt">Asesoría</span></div><div class="lr-item"><span class="li-name">Convierte cada queja en lealtad</span><span class="li-fmt">Sistema PQRS</span></div><div class="lr-item"><span class="li-name">Acompañamiento continuo</span><span class="li-fmt">Mensual</span></div><div class="lr-item"><span class="li-name">Tu pyme transformada en 30 días</span><span class="li-fmt">Reto</span></div><div class="lr-item"><span class="li-name">Rediseño a la medida</span><span class="li-fmt">En tu empresa</span></div>
+            <p class="lr-more">y más a tu medida</p>
+          </div>
+        </div>
+      </article>
+      <article class="lr" style="--acc:#C5A46D;--acc-30:rgba(197,164,109,.6);--acc-bd:rgba(197,164,109,.6);--acc-06:rgba(197,164,109,.09);--acc-tint:rgba(197,164,109,.2)">
+        <div class="lr-sym"></div>
+        <div class="lr-id">
+          <span class="lr-eye">Línea 03</span>
+          <h3 class="lr-name">Digital con IA</h3>
+          <p class="lr-sub">a cualquier presupuesto</p>
+          <p class="lr-promise">La fuerza de la IA y WhatsApp, trabajando por tu cliente.</p>
+          <span class="lr-buyer">Innovación en tu bolsillo</span>
+        </div>
+        <div class="lr-menu">
+          <div class="lr-card">
+            <div class="lr-item"><span class="li-name">Cápsulas CX diarias</span><span class="li-fmt">WhatsApp</span></div><div class="lr-item"><span class="li-name">Tutor CX</span><span class="li-fmt">Copiloto IA</span></div><div class="lr-item"><span class="li-name">Responde PQRS</span><span class="li-fmt">IA</span></div><div class="lr-item"><span class="li-name">Escucha CX — sentimiento</span><span class="li-fmt">IA</span></div><div class="lr-item"><span class="li-name">Diagnóstico CX Conversacional</span><span class="li-fmt">Gratis</span></div><div class="lr-item"><span class="li-name">Membresía Pyme Valiosa</span><span class="li-fmt">Suscripción</span></div>
+            <p class="lr-more">y más a tu medida</p>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="svc-grid">
-      <div class="svc sr d1">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
-        <h3 class="svc-t">Conferencias y Talleres</h3>
-        <p class="svc-d">Para cámaras, gremios, empresas medianas y eventos del ecosistema emprendedor. Contenido accionable, sin jerga corporativa.</p>
-        <ul class="svc-l"><li>Conferencia institucional (45–90 min)</li><li>Taller in-company (4–8 horas)</li><li>Módulo de diplomado universitario</li><li>Curso cohorte cerrada (6–12 semanas)</li></ul>      </div>
-      <div class="svc sr d2">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg></div>
-        <h3 class="svc-t">Consultoría y Asesoría</h3>
-        <p class="svc-d">Desde una sesión express hasta un acompañamiento continuo. Diagnóstico real, soluciones a la medida del negocio en construcción.</p>
-        <ul class="svc-l"><li>Asesoría Express · 30 min + nota escrita</li><li>Asesoría Estructurada · 90 min + entregable</li><li>Consultoría CX retainer mensual</li><li>Auditoría y diseño de sistema PQRS</li></ul>      </div>
-      <div class="svc sr d3">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></div>
-        <h3 class="svc-t">Canal Universitario</h3>
-        <p class="svc-d">Para centros de educación continua y emprendimiento que quieren ofrecer formación CX especializada a su comunidad de pymes.</p>
-        <ul class="svc-l"><li>Módulos con sello Clientes Valiosos</li><li>Alianzas con centros de emprendimiento</li><li>Diagnóstico Anual CX para centros</li><li>Talleres open para cohortes</li></ul>      </div>
-      <div class="svc sr d4">
-        <div class="svc-ic"><svg viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 19 10 12 10 13 2"/></svg></div>
-        <h3 class="svc-t">Herramientas Digitales</h3>
-        <p class="svc-d">Productos escalables para pymes con presupuesto limitado: diagnósticos, cápsulas de aprendizaje y asistentes de IA entrenados en CX.</p>
-        <ul class="svc-l"><li>Tutor CX — asistente IA especializado</li><li>Membresía Pyme Valiosa</li><li>Diagnóstico CX conversacional gratuito</li><li>Cápsulas CX diarias por WhatsApp</li></ul>      </div>
+    <div class="serv-cta sr">
+      <p class="serv-cta-txt">Toda gran relación empieza con <em>una conversación.</em></p>
+      <a href="#contacto" class="btn btn-gold">Hablemos <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -643,19 +764,19 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
       <details class="faq-item"><summary>¿Qué es la experiencia del cliente (CX) y por qué le importa a una pyme?</summary>
         <p>La experiencia del cliente (CX) es la suma de todas las percepciones que una persona se lleva al interactuar con tu negocio, desde que te descubre hasta la posventa. Para las pymes y los emprendimientos colombianos es su mayor diferencial competitivo: la cercanía y la agilidad de un negocio pequeño son casi imposibles de imitar para una gran corporación.</p></details>
       <details class="faq-item"><summary>¿En qué se diferencia la experiencia del cliente del servicio al cliente?</summary>
-        <p>El servicio al cliente es un momento puntual —resolver una duda o un reclamo—, mientras que la experiencia del cliente es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Un buen servicio al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos.</p></details>
+        <p>El servicio al cliente —o la atención al cliente— es un momento puntual: resolver una duda o un reclamo. La experiencia del cliente, en cambio, es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Una buena atención al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos.</p></details>
       <details class="faq-item"><summary>¿Cómo puede una pyme mejorar la fidelización y retención de clientes?</summary>
-        <p>La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y un cliente fiel llega a valer hasta 20 veces más que uno de paso. No requiere grandes inversiones, sino disciplina y criterio.</p></details>
+        <p>La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, medir la satisfacción del cliente, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y conservar a un cliente cuesta mucho menos que conseguir uno nuevo. No requiere grandes inversiones, sino disciplina y criterio.</p></details>
       <details class="faq-item"><summary>¿Necesito mucho presupuesto o tecnología para mejorar la experiencia del cliente?</summary>
         <p>No. Se empieza con lo que ya tienes: una conversación de WhatsApp, una hoja de cálculo y el hábito de escuchar a tu cliente. La cultura de valorar a cada persona pesa más que cualquier herramienta costosa, así que la experiencia del cliente es accesible para cualquier presupuesto.</p></details>
       <details class="faq-item"><summary>¿Qué servicios ofrece Clientes Valiosos?</summary>
-        <p>Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme.</p></details>
+        <p>Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, capacitación, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme.</p></details>
     </div>
   </div>
 </section>
 
 <script type="application/ld+json">
-{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name": "¿Qué es la experiencia del cliente (CX) y por qué le importa a una pyme?","acceptedAnswer": {"@type": "Answer","text": "La experiencia del cliente (CX) es la suma de todas las percepciones que una persona se lleva al interactuar con tu negocio, desde que te descubre hasta la posventa. Para las pymes y los emprendimientos colombianos es su mayor diferencial competitivo: la cercanía y la agilidad de un negocio pequeño son casi imposibles de imitar para una gran corporación."}},{"@type": "Question","name": "¿En qué se diferencia la experiencia del cliente del servicio al cliente?","acceptedAnswer": {"@type": "Answer","text": "El servicio al cliente es un momento puntual —resolver una duda o un reclamo—, mientras que la experiencia del cliente es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Un buen servicio al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos."}},{"@type": "Question","name": "¿Cómo puede una pyme mejorar la fidelización y retención de clientes?","acceptedAnswer": {"@type": "Answer","text": "La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y un cliente fiel llega a valer hasta 20 veces más que uno de paso. No requiere grandes inversiones, sino disciplina y criterio."}},{"@type": "Question","name": "¿Necesito mucho presupuesto o tecnología para mejorar la experiencia del cliente?","acceptedAnswer": {"@type": "Answer","text": "No. Se empieza con lo que ya tienes: una conversación de WhatsApp, una hoja de cálculo y el hábito de escuchar a tu cliente. La cultura de valorar a cada persona pesa más que cualquier herramienta costosa, así que la experiencia del cliente es accesible para cualquier presupuesto."}},{"@type": "Question","name": "¿Qué servicios ofrece Clientes Valiosos?","acceptedAnswer": {"@type": "Answer","text": "Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme."}}]}
+{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name": "¿Qué es la experiencia del cliente (CX) y por qué le importa a una pyme?","acceptedAnswer": {"@type": "Answer","text": "La experiencia del cliente (CX) es la suma de todas las percepciones que una persona se lleva al interactuar con tu negocio, desde que te descubre hasta la posventa. Para las pymes y los emprendimientos colombianos es su mayor diferencial competitivo: la cercanía y la agilidad de un negocio pequeño son casi imposibles de imitar para una gran corporación."}},{"@type": "Question","name": "¿En qué se diferencia la experiencia del cliente del servicio al cliente?","acceptedAnswer": {"@type": "Answer","text": "El servicio al cliente —o la atención al cliente— es un momento puntual: resolver una duda o un reclamo. La experiencia del cliente, en cambio, es todo el recorrido completo: la primera impresión, la compra, el uso y la relación en el tiempo. Una buena atención al cliente es parte esencial de una buena experiencia, pero la CX es la estrategia que conecta todos esos momentos."}},{"@type": "Question","name": "¿Cómo puede una pyme mejorar la fidelización y retención de clientes?","acceptedAnswer": {"@type": "Answer","text": "La fidelización de clientes se construye con consistencia: escuchar de forma sistemática, medir la satisfacción del cliente, personalizar el trato y cumplir lo prometido. Subir apenas un 5% la retención de clientes puede elevar las utilidades entre un 25% y un 95%, y conservar a un cliente cuesta mucho menos que conseguir uno nuevo. No requiere grandes inversiones, sino disciplina y criterio."}},{"@type": "Question","name": "¿Necesito mucho presupuesto o tecnología para mejorar la experiencia del cliente?","acceptedAnswer": {"@type": "Answer","text": "No. Se empieza con lo que ya tienes: una conversación de WhatsApp, una hoja de cálculo y el hábito de escuchar a tu cliente. La cultura de valorar a cada persona pesa más que cualquier herramienta costosa, así que la experiencia del cliente es accesible para cualquier presupuesto."}},{"@type": "Question","name": "¿Qué servicios ofrece Clientes Valiosos?","acceptedAnswer": {"@type": "Answer","text": "Clientes Valiosos acompaña a pymes, mipymes y emprendimientos colombianos con consultoría a la medida, capacitación, conferencias y formación en experiencia del cliente. Empezamos con lo que tu negocio ya tiene y aportamos criterio, cifras verificadas y un enfoque construido desde la realidad de la pyme."}}]}
 </script>
 
 <!-- CTA FINAL -->
@@ -664,14 +785,16 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
     <img class="cta-logo sr" src="logo-cv-teal.svg" alt="Clientes Valiosos" width="220" height="34">
     <span class="eyebrow eyebrow--dark sr">Empieza ahora</span>
     <h2 class="cta-h2 sr">¿Listo para convertir cada cliente en un cliente valioso?</h2>
-    <p class="cta-lead sr">Empieza con lo que ya tienes. Una sesión express, una conferencia o una consultoría a la medida. Sin fórmulas rígidas: con el criterio que tu negocio necesita.</p>
+    <p class="cta-lead sr">Empieza con lo que ya tienes. Una sesión exprés, una conferencia o una consultoría a la medida. Sin fórmulas rígidas: con el criterio que tu negocio necesita.</p>
     <div class="cta-actions sr">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@clientesvaliosos.com&su=Quiero%20empezar%20con%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-dark">Escríbenos <svg viewBox="0 0 24 24"><path d="m4 6 8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg></a>
-      <a href="https://wa.me/573133673838?text=Hola%20Rafael%2C%20quiero%20saber%20más%20de%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-wa" aria-label="Escríbenos por WhatsApp">WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg></a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@clientesvaliosos.com&su=Quiero%20empezar%20con%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-dark btn-cta"><svg viewBox="0 0 24 24"><path d="m4 6 8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg><span class="btn-l"><b>Escríbenos</b><small>contacto@clientesvaliosos.com</small></span></a>
+      <a href="https://wa.me/573133673838?text=Hola%20Rafael%2C%20quiero%20saber%20más%20de%20Clientes%20Valiosos" target="_blank" rel="noopener" class="btn btn-wa btn-cta" aria-label="Escríbenos por WhatsApp al +57 313 367 3838"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg><span class="btn-l"><b>WhatsApp</b><small>+57 313 367 3838</small></span></a>
     </div>
-    <div class="cta-copy sr">
-      <span class="copy-chip" data-copy="contacto@clientesvaliosos.com" role="button" tabindex="0" title="Clic para copiar"><span class="cc-t">contacto@clientesvaliosos.com</span> <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
-      <span class="copy-chip" data-copy="+57 313 367 3838" role="button" tabindex="0" title="Clic para copiar"><span class="cc-t">+57 313 367 3838</span> <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
+    <div class="cta-social sr">
+      <span class="cta-social-lbl">Síguenos</span>
+      <a href="https://www.instagram.com/clientesvaliosos" target="_blank" rel="noopener" class="soc soc-dark" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.982c2.937 0 3.285.011 4.445.064 1.072.049 1.655.228 2.042.379.514.199.88.437 1.265.822.385.385.623.751.822 1.265.151.388.331.97.379 2.043.053 1.16.064 1.508.064 4.445 0 2.937-.011 3.285-.064 4.445-.048 1.073-.228 1.655-.379 2.043a3.408 3.408 0 0 1-.822 1.265 3.408 3.408 0 0 1-1.265.822c-.388.151-.97.33-2.042.379-1.16.053-1.508.064-4.445.064-2.937 0-3.285-.011-4.445-.064-1.073-.049-1.655-.228-2.043-.379a3.408 3.408 0 0 1-1.265-.822 3.408 3.408 0 0 1-.822-1.265c-.151-.388-.33-.97-.379-2.043-.053-1.16-.064-1.508-.064-4.445 0-2.937.011-3.285.064-4.445.049-1.073.228-1.655.379-2.043.199-.514.437-.88.822-1.265a3.408 3.408 0 0 1 1.265-.822c.388-.151.97-.33 2.043-.379 1.16-.053 1.508-.064 4.445-.064M12 1c-2.987 0-3.362.013-4.535.066-1.171.054-1.97.24-2.67.512a5.392 5.392 0 0 0-1.949 1.269 5.392 5.392 0 0 0-1.269 1.948c-.272.7-.458 1.5-.512 2.671C1.013 8.638 1 9.013 1 12s.013 3.362.066 4.535c.054 1.171.24 1.97.512 2.67a5.392 5.392 0 0 0 1.269 1.949 5.392 5.392 0 0 0 1.948 1.269c.7.272 1.5.458 2.671.512C8.638 22.987 9.013 23 12 23s3.362-.013 4.535-.066c1.171-.054 1.97-.24 2.67-.512a5.392 5.392 0 0 0 1.949-1.269 5.392 5.392 0 0 0 1.269-1.948c.272-.7.458-1.5.512-2.671C22.987 15.362 23 14.987 23 12s-.013-3.362-.066-4.535c-.054-1.171-.24-1.97-.512-2.67a5.392 5.392 0 0 0-1.269-1.949 5.392 5.392 0 0 0-1.948-1.269c-.7-.272-1.5-.458-2.671-.512C15.362 1.013 14.987 1 12 1zm0 5.351A5.649 5.649 0 1 0 17.649 12 5.649 5.649 0 0 0 12 6.351zm0 9.316A3.667 3.667 0 1 1 15.667 12 3.667 3.667 0 0 1 12 15.667zm5.872-10.859a1.32 1.32 0 1 0 1.32 1.32 1.32 1.32 0 0 0-1.32-1.32z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61591964682248" target="_blank" rel="noopener" class="soc soc-dark" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+      <a href="https://www.linkedin.com/company/clientes-valiosos" target="_blank" rel="noopener" class="soc soc-dark" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg></a>
     </div>
   </div>
 </section>
@@ -684,6 +807,7 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
     <a href="#hero" class="foot-logo" aria-label="Clientes Valiosos — inicio"><img src="logo-cv-apilado-claro.svg" alt="Clientes Valiosos"></a>
     <span class="foot-copy">© 2026 Clientes Valiosos S.A.S. · Bogotá, Colombia</span>
     <div class="foot-contact"><a href="tel:+573133673838">+57 313 367 3838</a><a href="mailto:contacto@clientesvaliosos.com">contacto@clientesvaliosos.com</a></div>
+    <div class="foot-social"><a href="https://www.instagram.com/clientesvaliosos" target="_blank" rel="noopener" class="soc soc-lt" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.982c2.937 0 3.285.011 4.445.064 1.072.049 1.655.228 2.042.379.514.199.88.437 1.265.822.385.385.623.751.822 1.265.151.388.331.97.379 2.043.053 1.16.064 1.508.064 4.445 0 2.937-.011 3.285-.064 4.445-.048 1.073-.228 1.655-.379 2.043a3.408 3.408 0 0 1-.822 1.265 3.408 3.408 0 0 1-1.265.822c-.388.151-.97.33-2.042.379-1.16.053-1.508.064-4.445.064-2.937 0-3.285-.011-4.445-.064-1.073-.049-1.655-.228-2.043-.379a3.408 3.408 0 0 1-1.265-.822 3.408 3.408 0 0 1-.822-1.265c-.151-.388-.33-.97-.379-2.043-.053-1.16-.064-1.508-.064-4.445 0-2.937.011-3.285.064-4.445.049-1.073.228-1.655.379-2.043.199-.514.437-.88.822-1.265a3.408 3.408 0 0 1 1.265-.822c.388-.151.97-.33 2.043-.379 1.16-.053 1.508-.064 4.445-.064M12 1c-2.987 0-3.362.013-4.535.066-1.171.054-1.97.24-2.67.512a5.392 5.392 0 0 0-1.949 1.269 5.392 5.392 0 0 0-1.269 1.948c-.272.7-.458 1.5-.512 2.671C1.013 8.638 1 9.013 1 12s.013 3.362.066 4.535c.054 1.171.24 1.97.512 2.67a5.392 5.392 0 0 0 1.269 1.949 5.392 5.392 0 0 0 1.948 1.269c.7.272 1.5.458 2.671.512C8.638 22.987 9.013 23 12 23s3.362-.013 4.535-.066c1.171-.054 1.97-.24 2.67-.512a5.392 5.392 0 0 0 1.949-1.269 5.392 5.392 0 0 0 1.269-1.948c.272-.7.458-1.5.512-2.671C22.987 15.362 23 14.987 23 12s-.013-3.362-.066-4.535c-.054-1.171-.24-1.97-.512-2.67a5.392 5.392 0 0 0-1.269-1.949 5.392 5.392 0 0 0-1.948-1.269c-.7-.272-1.5-.458-2.671-.512C15.362 1.013 14.987 1 12 1zm0 5.351A5.649 5.649 0 1 0 17.649 12 5.649 5.649 0 0 0 12 6.351zm0 9.316A3.667 3.667 0 1 1 15.667 12 3.667 3.667 0 0 1 12 15.667zm5.872-10.859a1.32 1.32 0 1 0 1.32 1.32 1.32 1.32 0 0 0-1.32-1.32z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61591964682248" target="_blank" rel="noopener" class="soc soc-lt" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a><a href="https://www.linkedin.com/company/clientes-valiosos" target="_blank" rel="noopener" class="soc soc-lt" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg></a></div>
     <ul class="foot-nav">
       <li><a href="#manifiesto">Nosotros</a></li>
       <li><a href="#servicios">Servicios</a></li>
