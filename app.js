@@ -53,6 +53,7 @@ document.documentElement.classList.add('js');
   var bar = document.getElementById('progress');
   var top = document.getElementById('totop');
   var mcta = document.getElementById('mcta');
+  var wafloat = document.getElementById('wafloat');
   if(window.innerWidth <= 760){ document.body.classList.add('has-mcta'); }
   function onScroll(){
     var h = document.documentElement;
@@ -60,6 +61,7 @@ document.documentElement.classList.add('js');
     bar.style.width = (sc*100) + '%';
     top.classList.toggle('show', h.scrollTop > 600);
     if(mcta){ mcta.classList.toggle('show', h.scrollTop > 700); }
+    if(wafloat){ wafloat.classList.toggle('show', h.scrollTop > 220); }
   }
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
   top.addEventListener('click', function(){ scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });

@@ -457,6 +457,45 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
   .hero-h1 .ln>span{transform:none}
   .hero-eyebrow,.hero-body,.hero-ctas,.hero-note,.hero-card,.hero-scroll{opacity:1;animation:none}
 }
+
+/* ===== HERO v2 · fondo rotativo (fundido suave, sin zoom) ===== */
+#hero .hero-orb,#hero .hero-symbol{display:none}
+.hero-slides{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--ink-deep)}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:heroSwap 35s infinite}
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:7s}
+.hero-slide:nth-child(3){animation-delay:14s}
+.hero-slide:nth-child(4){animation-delay:21s}
+.hero-slide:nth-child(5){animation-delay:28s}
+@keyframes heroSwap{0%{opacity:0}6%{opacity:1}20%{opacity:1}26%{opacity:0}100%{opacity:0}}
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(135% 105% at 10% 54%, rgba(0,26,32,.62), rgba(0,0,0,0) 52%),linear-gradient(100deg, rgba(0,40,49,.96) 0%, rgba(0,40,49,.86) 32%, rgba(0,44,53,.48) 60%, rgba(0,44,53,.14) 100%)}
+.hero-veil-b{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(0,30,37,.5) 0%,rgba(0,30,37,0) 26%)}
+.hero-grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.30;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#hero .hero-inner{grid-template-columns:1fr;gap:0}
+#hero .hero-inner>div{max-width:640px}
+.hero-proof{display:flex;gap:1.8rem;margin-top:2.1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s 1s var(--ease-out) forwards}
+.hero-proof .mini{max-width:235px}
+#nav::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;transition:opacity .35s;background:linear-gradient(180deg,rgba(0,24,30,.78) 0%,rgba(0,24,30,.38) 55%,rgba(0,24,30,0) 100%)}
+#nav.stuck::before{opacity:0}
+#nav .nav-links a{color:var(--wht-85);text-shadow:0 1px 6px rgba(0,0,0,.4)}
+#nav.stuck .nav-links a{text-shadow:none}
+@media(max-width:760px){
+  #hero{padding-bottom:6.5rem}
+  /* WhatsApp: oculto sobre el hero, aparece al hacer scroll (no se monta con los botones) */
+  #wafloat{bottom:5rem;opacity:0;transform:translateY(10px) scale(.92);pointer-events:none}
+  #wafloat.show{opacity:1;transform:none;pointer-events:auto}
+  .hero-veil{background:linear-gradient(180deg,rgba(0,40,49,.5) 0%,rgba(0,30,37,.86) 100%)}
+  .hero-veil-b{background:linear-gradient(0deg,rgba(0,30,37,.75) 0%,rgba(0,30,37,0) 42%)}
+  #hero .hero-inner>div{max-width:100%}
+  /* foco móvil por foto: rostro protagonista centrado (PC sin cambios) */
+  .hero-slide:nth-child(1){object-position:73% 31% !important}
+  .hero-slide:nth-child(2){object-position:52% 34% !important}
+  .hero-slide:nth-child(3){object-position:49% 40% !important}
+  .hero-slide:nth-child(4){object-position:68% 32% !important}
+  .hero-slide:nth-child(5){object-position:64% 34% !important}
+}
+@media(prefers-reduced-motion:reduce){.hero-slide{animation:none;opacity:0}.hero-slide:nth-child(1){opacity:1}}
+
 </style>
 
 <!-- Datos estructurados (SEO) -->
@@ -540,9 +579,16 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-symbol" aria-hidden="true"></div>
+  <div class="hero-slides" aria-hidden="true">
+    <img class="hero-slide" src="hero-comercio.webp" alt="Emprendedora colombiana frente a su negocio" style="object-position:66% 30%" fetchpriority="high" loading="eager" decoding="async">
+    <img class="hero-slide" src="hero-cafe.webp" alt="Caficultores conversando en la finca" style="object-position:55% 30%" loading="lazy" decoding="async">
+    <img class="hero-slide" src="hero-startup.webp" alt="Equipo de una startup colombiana" style="object-position:46% 40%" loading="lazy" decoding="async">
+    <img class="hero-slide" src="hero-servicios.webp" alt="Acuerdo de servicios en oficina" style="object-position:60% 40%" loading="lazy" decoding="async">
+    <img class="hero-slide" src="hero-arquitectura.webp" alt="Reunión en un estudio de arquitectura" style="object-position:55% 42%" loading="lazy" decoding="async">
+  </div>
+  <div class="hero-veil"></div>
+  <div class="hero-veil-b"></div>
+  <div class="hero-grain"></div>
   <div class="hero-inner container">
     <div>
       <span class="hero-eyebrow">CX para Pymes y Emprendimientos · Colombia</span>
@@ -552,17 +598,9 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
         <a href="#contacto" class="btn btn-gold">Empieza hoy <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#servicios" class="btn btn-ghost-l">Ver servicios</a>
       </div>
-    </div>
-    <div class="hero-card">
-      <img loading="eager" decoding="async" src="emprendedora.webp" alt="Emprendedora colombiana sonriente frente a su negocio">
-      <div class="hero-card-grad"></div>
-      <div class="hero-card-body">
-        <p class="hero-quote">No hay que esperar a tener tamaño para empezar: se empieza desde el primer cliente.</p>
-        <div class="hero-card-divider"></div>
-        <div class="hero-card-stats">
-          <div class="mini"><strong>99,5%</strong><span>del tejido empresarial colombiano son mipymes</span></div>
-          <div class="mini"><strong>+5%</strong><span>retención → hasta 95% más utilidades (Bain)</span></div>
-        </div>
+      <div class="hero-proof">
+        <div class="mini"><strong>99,5%</strong><span>del tejido empresarial colombiano son mipymes</span></div>
+        <div class="mini"><strong>+5%</strong><span>retención → hasta 95% más utilidades (Bain)</span></div>
       </div>
     </div>
   </div>
