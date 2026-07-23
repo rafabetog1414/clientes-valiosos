@@ -475,6 +475,12 @@ footer::before{content:'';position:absolute;inset:0;background:url('brand-symbol
 #hero .hero-inner>div{max-width:640px}
 .hero-proof{display:flex;gap:1.8rem;margin-top:2.1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s 1s var(--ease-out) forwards}
 .hero-proof .mini{max-width:235px}
+/* Título del hero: entrada por fundido suave, SIN recorte (arregla "inicia cortado") */
+.hero-h1 .ln{overflow:visible}
+.hero-h1 .ln>span,html.js .hero-h1 .ln>span,html.js .hero-h1.in .ln>span{transform:none !important;transition:none !important}
+.hero-h1{opacity:0;transform:translateY(16px);animation:heroTitleIn .9s .25s var(--ease-out) forwards}
+@keyframes heroTitleIn{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hero-h1{opacity:1;transform:none;animation:none}}
 #nav::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;transition:opacity .35s;background:linear-gradient(180deg,rgba(0,24,30,.78) 0%,rgba(0,24,30,.38) 55%,rgba(0,24,30,0) 100%)}
 #nav.stuck::before{opacity:0}
 #nav .nav-links a{color:var(--wht-85);text-shadow:0 1px 6px rgba(0,0,0,.4)}
